@@ -1,8 +1,6 @@
 # Temporary preview host
 
-This repository serves a **static preview build** for review purposes only. It is not a live
-production site and is not indexed intentionally.
+Serves a **static preview build** for review only, at `/skinnourishers/`.
 
-Contents are compiled output only — no source, no configuration, no credentials.
-
-Delete this repository once the review is complete.
+Compiled output only — no source, no configuration, no secrets. Delete this repository once the
+review is complete.
