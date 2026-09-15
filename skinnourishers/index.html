@@ -1,9 +1,9 @@
 <title>Skin Nourishers Reel Styles</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&family=Manrope:wght@400;600;700&family=Montserrat:wght@800;900&family=Oswald:wght@600&family=Playfair+Display:ital,wght@0,700;1,700;1,900&display=swap">
 <style>
-:root{--ground:#F6F8F9;--ink:#12303A;--muted:#50686F;--line:#DFE3E6;--accent:#17697B;--card:#FFFFFF;--gold:#F2C27B}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#0D181C;--ink:#E6EEF0;--muted:#9BB0B7;--line:#22353B;--accent:#A9CBD6;--card:#132328}}
-:root[data-theme="dark"]{--ground:#0D181C;--ink:#E6EEF0;--muted:#9BB0B7;--line:#22353B;--accent:#A9CBD6;--card:#132328}
+:root{--ground:#F6F8F9;--ink:#12303A;--muted:#50686F;--line:#DFE3E6;--accent:#17697B;--card:#FFFFFF;--gold:#F2C27B;--hl:#FCEFD2;--hl-ink:#553E10}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#0D181C;--ink:#E6EEF0;--muted:#9BB0B7;--line:#22353B;--accent:#A9CBD6;--card:#132328;--hl:#3B3019;--hl-ink:#F6E3B8}}
+:root[data-theme="dark"]{--ground:#0D181C;--ink:#E6EEF0;--muted:#9BB0B7;--line:#22353B;--accent:#A9CBD6;--card:#132328;--hl:#3B3019;--hl-ink:#F6E3B8}
 *{box-sizing:border-box}
 body{background:var(--ground);color:var(--ink);font:15px/1.6 Manrope,system-ui,sans-serif;padding:40px 20px 64px}
 .wrap{max-width:1040px;margin:0 auto;display:grid;gap:56px}
@@ -54,8 +54,8 @@ figcaption span{color:var(--muted);font-size:14px}
 @keyframes rise{0%{transform:translateY(110%)}15%,82%{transform:none}94%,100%{transform:translateY(-110%)}}
 /* pop-up frames */
 /* hanger: word by word, the key word swings in from a pivot above and settles like a coat on a hook */
-.cap .w{display:inline-block;animation:capIn .3s cubic-bezier(.2,.8,.2,1) both;margin:0 .12em}
-.cap .hang{display:inline-block;font:italic 900 1.7em/1 "Playfair Display",serif;color:#fff;text-shadow:0 3px 14px rgba(0,0,0,.6);transform-origin:50% -60%;animation:hang 1.3s both}
+.title .w{display:inline-block;animation:capIn .3s cubic-bezier(.2,.8,.2,1) both}
+.title .hang{display:inline-block;margin-top:.1em;font:italic 900 14cqw/1 "Playfair Display",serif;color:#fff;text-shadow:0 3px 14px rgba(0,0,0,.6);transform-origin:50% -60%;animation:hang 1.3s both}
 @keyframes hang{0%{opacity:0;transform:rotate(-38deg)}18%{opacity:1;transform:rotate(22deg)}36%{transform:rotate(-12deg)}54%{transform:rotate(6deg)}72%{transform:rotate(-2.5deg)}88%,100%{opacity:1;transform:none}}
 .img>img,.img>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .img{position:relative}
@@ -69,6 +69,7 @@ figcaption span{color:var(--muted);font-size:14px}
 .mat{background:#F6F8F9;padding:5% 5% 3%;border-radius:4px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
 .mat .img{outline:1px solid #2A7F94;outline-offset:-1px}
 .mat p{margin:.35em 0 0;text-align:center;font:italic 700 5cqw "Playfair Display",serif;color:#17697B}
+.note{background:var(--hl);color:var(--hl-ink);border-radius:10px;padding:14px 18px;max-width:66ch;margin:0}
 ul{margin:0;padding-left:1.1em;display:grid;gap:6px;max-width:66ch}
 .reply{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;font-weight:600}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0s!important;animation-iteration-count:1!important}.kw path{stroke-dashoffset:0}.pop{opacity:1}}
@@ -78,12 +79,27 @@ ul{margin:0;padding-left:1.1em;display:grid;gap:6px;max-width:66ch}
 <header>
   <div class="brand">Skin Nourishers · educational reels</div>
   <h1>Pick your look</h1>
-  <p class="lede">Pick one caption style and one pop-up frame. Your picks become the template for every educational video, so each post follows it and you only approve the look once. The samples use your 11 September laser video.</p>
+  <p class="lede">Pick one intro, one caption style and one pop-up frame. Your picks become the template for every educational video, so each post follows it and you only approve the look once. The samples use your 11 September laser video.</p>
 </header>
 
 <section>
+  <h2>The intro</h2>
+  <p class="sub">No captions over the intro. The title is bigger and bolder, and the ending uses the same motion.</p>
+  <div class="row">
+    <figure><div class="phone"><div class="title" id="introH"></div></div>
+      <figcaption><b>The hanger</b><span>Words come up one at a time. Then the key word swings onto its hook and settles, like a coat on a hanger.</span></figcaption></figure>
+    <figure><div class="phone"><div class="title cam"><span class="l1">Does laser work on</span><span class="l2">every skin tone?</span></div></div>
+      <figcaption><b>From the camera</b><span>Rushes in from the lens and settles. Energetic.</span></figcaption></figure>
+    <figure><div class="phone"><div class="title soft"><span class="l1">Does laser work on</span><span class="l2">every skin tone?</span></div></div>
+      <figcaption><b>Soft focus</b><span>Sharpens out of a blur, the way a lens pulls focus. Calm and premium.</span></figcaption></figure>
+    <figure><div class="phone"><div class="title rise"><span class="m"><span class="l1">Does laser work on</span></span><span class="m"><span class="l2">every skin tone?</span></span></div></div>
+      <figcaption><b>Rise</b><span>Lines slide up into place, like a magazine cover.</span></figcaption></figure>
+  </div>
+</section>
+
+<section>
   <h2>The captions</h2>
-  <p class="sub">All three use a new bold caption font. What changes is how the important words are treated.</p>
+  <p class="sub">Both use a new bold caption font. What changes is how the important words are treated.</p>
   <div class="row">
     <figure><div class="phone"><div class="cap" id="capA"></div></div>
       <span class="tag">Ethan's idea</span>
@@ -91,14 +107,13 @@ ul{margin:0;padding-left:1.1em;display:grid;gap:6px;max-width:66ch}
     <figure><div class="phone"><div class="cap" id="capB"></div></div>
       <span class="tag">Sonia's idea</span>
       <figcaption><b>Every line different</b><span>Each group of words gets its own style (italic, underlined, spaced capitals, script, outline, banner) and every line stays white.</span></figcaption></figure>
-    <figure><div class="phone"><div class="cap" id="capC"></div></div>
-      <figcaption><b>The hanger</b><span>Words arrive one at a time. The most important word is the biggest, and it swings onto its hook and settles, like a coat on a hanger.</span></figcaption></figure>
   </div>
 </section>
 
 <section>
   <h2>The pop-ups</h2>
   <p class="sub">These replace the white text cards. A pop-up appears only while you talk about that topic, for 3–5 seconds, and then leaves. It shows your own treatment footage first. For topics you have no footage of, a realistic AI image made for that topic goes in the same frame.</p>
+  <p class="note"><b>The moving clip is only an idea.</b> In the real videos, pop-ups will be photos from your treatments or AI images made for the topic, shown in one of these frames.</p>
   <div class="row">
     <figure><div class="phone"><div class="pop"><div class="arch"><div class="img"><video src="img/treatment-clip.mp4" autoplay muted loop playsinline></video></div></div></div><div class="cap"><span>we treat pigmentation</span></div></div>
       <figcaption><b>Arch frame, moving clip</b><span>A few seconds of the real treatment playing inside a soft arch.</span></figcaption></figure>
@@ -116,7 +131,7 @@ ul{margin:0;padding-left:1.1em;display:grid;gap:6px;max-width:66ch}
     <li><b>Five hashtags</b> on every post.</li>
     <li><b>Only one voice at a time.</b> Your voice never plays over people talking in a treatment clip.</li>
   </ul>
-  <div class="reply">To reply, send your two picks, for example: Captions: The hanger · Pop-ups: Arch frame</div>
+  <div class="reply">To reply, send your three picks, for example: Intro: The hanger · Captions: Keyword pop · Pop-ups: Arch frame</div>
 </section>
 </div>
 
@@ -129,12 +144,13 @@ function tick(){
   const raw=lines[n%lines.length];
   A.innerHTML='<span>'+raw.replace(/\[(.+?)\]/,(m,w)=>'<span class="kw">'+w+curl+'</span>')+'</span>';
   B.innerHTML='<span class="s'+(n%6)+'">'+raw.replace(/[\[\]]/g,"")+'</span>';
-  let i=0;
-  C.innerHTML=raw.match(/\[[^\]]+\]|[^\s\[]+/g).map(t=>t[0]==="["
-    ?'<span class="hang" style="animation-delay:'+(0.14*i++)+'s">'+t.slice(1,-1)+'</span>'
-    :'<span class="w" style="animation-delay:'+(0.14*i++)+'s">'+t+'</span>').join(" ");
   n++;
 }
-const C=document.getElementById("capC");
-tick();setInterval(tick,2200);
+tick();setInterval(tick,1600);
+const H=document.getElementById("introH");
+function intro(){
+  let d=0;
+  H.innerHTML='<span class="l1">'+"Does laser work on every".split(" ").map(w=>'<span class="w" style="animation-delay:'+(0.18*d++)+'s">'+w+'</span>').join(" ")+'</span><span class="hang" style="animation-delay:'+(0.18*d+0.1).toFixed(2)+'s">skin tone?</span>';
+}
+intro();setInterval(intro,5000);
 </script>
