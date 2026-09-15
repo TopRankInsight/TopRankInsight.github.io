@@ -1,5 +1,0 @@
-User-Agent: *
-Allow: /
-
-Host: https://skinnourishers.co.za
-Sitemap: https://skinnourishers.co.za/sitemap.xml
