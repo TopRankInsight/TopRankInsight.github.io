@@ -44,14 +44,24 @@ figcaption span{color:var(--muted);font-size:14px}
 .title{position:absolute;left:8%;right:8%;top:30%;text-align:center;color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.5)}
 .title .l1{display:block;font:800 7cqw/1.2 Montserrat,sans-serif}
 .title .l2{display:block;font:italic 900 14cqw/1 "Playfair Display",serif}
-.cam{animation:cam 5s cubic-bezier(.16,1,.3,1) infinite}
-@keyframes cam{0%{opacity:0;transform:scale(2.8);filter:blur(14px)}16%{opacity:1;transform:none;filter:none}82%{opacity:1;transform:none}94%,100%{opacity:0;transform:scale(.96)}}
-.soft{animation:soft 5s ease-out infinite}
-@keyframes soft{0%{opacity:0;filter:blur(16px);letter-spacing:.2em}24%{opacity:1;filter:none;letter-spacing:0}82%{opacity:1;filter:none}96%,100%{opacity:0;filter:blur(8px)}}
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* intro sequence, 7 s loop: video 0–1.5 s → grey gradient panel slides in from the left → title → panel slides out at 5.5 s → video carries on */
+.pre{animation:none;opacity:0}
+.run .pre{animation:pre 7s linear both}
+@keyframes pre{0%{opacity:0}3%,19%{opacity:1}23%,100%{opacity:0}}
+.board{position:absolute;inset:0;transform:translateX(-101%);background:linear-gradient(100deg,rgba(34,46,50,.93),rgba(52,66,70,.8) 55%,rgba(74,90,94,.62));-webkit-backdrop-filter:grayscale(1) blur(3px);backdrop-filter:grayscale(1) blur(3px)}
+.run .board{animation:board 7s cubic-bezier(.65,0,.35,1) both}
+@keyframes board{0%,21%{transform:translateX(-101%)}30%,78%{transform:none}87%,100%{transform:translateX(101%)}}
+.cam,.soft,.rise .m>span{opacity:0}
+.run .cam{animation:cam 1s 1.9s cubic-bezier(.16,1,.3,1) both}
+@keyframes cam{from{opacity:0;transform:scale(2.8);filter:blur(14px)}to{opacity:1;transform:none;filter:none}}
+.run .soft{animation:soft 1.3s 1.9s ease-out both}
+@keyframes soft{from{opacity:0;filter:blur(16px);letter-spacing:.2em}to{opacity:1;filter:none;letter-spacing:0}}
 .rise .m{display:block;overflow:hidden}
-.rise .m>span{display:block;animation:rise 5s cubic-bezier(.16,1,.3,1) infinite}
-.rise .m:nth-child(2)>span{animation-delay:.18s}
-@keyframes rise{0%{transform:translateY(110%)}15%,82%{transform:none}94%,100%{transform:translateY(-110%)}}
+.rise .m>span{display:block}
+.run .rise .m>span{animation:rise .9s 1.9s cubic-bezier(.16,1,.3,1) both}
+.run .rise .m:nth-child(2)>span{animation-delay:2.08s}
+@keyframes rise{from{opacity:1;transform:translateY(110%)}to{opacity:1;transform:none}}
 /* pop-up frames */
 /* hanger: word by word, the key word swings in from a pivot above and settles like a coat on a hook */
 .title .w{display:inline-block;animation:capIn .3s cubic-bezier(.2,.8,.2,1) both}
@@ -59,9 +69,9 @@ figcaption span{color:var(--muted);font-size:14px}
 @keyframes hang{0%{opacity:0;transform:rotate(-38deg)}18%{opacity:1;transform:rotate(22deg)}36%{transform:rotate(-12deg)}54%{transform:rotate(6deg)}72%{transform:rotate(-2.5deg)}88%,100%{opacity:1;transform:none}}
 .img>img,.img>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .img{position:relative}
-.pop{position:absolute;left:50%;top:3%;width:46%;animation:pop 6s cubic-bezier(.2,.8,.2,1) infinite}
+.pop{position:absolute;left:50%;top:3%;width:36%;animation:pop 6s cubic-bezier(.2,.8,.2,1) infinite}
 @keyframes pop{0%{opacity:0;transform:translateX(-50%) scale(.88);filter:blur(10px)}10%,72%{opacity:1;transform:translateX(-50%);filter:none}82%,100%{opacity:0;transform:translateX(-50%) scale(1.05);filter:blur(8px)}}
-.img{aspect-ratio:4/5;display:grid;align-items:end;padding:6%}
+.img{aspect-ratio:9/16}
 .img i{font:700 3.4cqw/1.3 Manrope,sans-serif;font-style:normal;color:#fff;background:rgba(0,0,0,.35);border-radius:99px;padding:.3em .8em;justify-self:start}
 .sun{background:radial-gradient(circle at 72% 18%,#FFF1C9,#F5BE6E 22%,#C47A52 52%,#5B3B37)}
 .room{background:linear-gradient(160deg,#DDE8EB,#A9CBD6 45%,#5E8E9A)}
@@ -84,15 +94,15 @@ ul{margin:0;padding-left:1.1em;display:grid;gap:6px;max-width:66ch}
 
 <section>
   <h2>The intro</h2>
-  <p class="sub">No captions over the intro. The title is bigger and bolder, and the ending uses the same motion.</p>
+  <p class="sub">Your video plays for a second or two while you introduce the topic. Then a soft grey panel slides in from the left, the title comes up, and after about 4 seconds the panel slides away and your video carries on. No captions while the title is on screen.</p>
   <div class="row">
-    <figure><div class="phone"><div class="title" id="introH"></div></div>
+    <figure><div class="phone intro"><video class="bg" src="img/sonia-talk.mp4" muted playsinline></video><div class="cap pre"><span>Today let's talk about laser</span></div><div class="board"><div class="title" id="introH"></div></div></div>
       <figcaption><b>The hanger</b><span>Words come up one at a time. Then the key word swings onto its hook and settles, like a coat on a hanger.</span></figcaption></figure>
-    <figure><div class="phone"><div class="title cam"><span class="l1">Does laser work on</span><span class="l2">every skin tone?</span></div></div>
+    <figure><div class="phone intro"><video class="bg" src="img/sonia-talk.mp4" muted playsinline></video><div class="cap pre"><span>Today let's talk about laser</span></div><div class="board"><div class="title cam"><span class="l1">Does laser work on</span><span class="l2">every skin tone?</span></div></div></div>
       <figcaption><b>From the camera</b><span>Rushes in from the lens and settles. Energetic.</span></figcaption></figure>
-    <figure><div class="phone"><div class="title soft"><span class="l1">Does laser work on</span><span class="l2">every skin tone?</span></div></div>
+    <figure><div class="phone intro"><video class="bg" src="img/sonia-talk.mp4" muted playsinline></video><div class="cap pre"><span>Today let's talk about laser</span></div><div class="board"><div class="title soft"><span class="l1">Does laser work on</span><span class="l2">every skin tone?</span></div></div></div>
       <figcaption><b>Soft focus</b><span>Sharpens out of a blur, the way a lens pulls focus. Calm and premium.</span></figcaption></figure>
-    <figure><div class="phone"><div class="title rise"><span class="m"><span class="l1">Does laser work on</span></span><span class="m"><span class="l2">every skin tone?</span></span></div></div>
+    <figure><div class="phone intro"><video class="bg" src="img/sonia-talk.mp4" muted playsinline></video><div class="cap pre"><span>Today let's talk about laser</span></div><div class="board"><div class="title rise"><span class="m"><span class="l1">Does laser work on</span></span><span class="m"><span class="l2">every skin tone?</span></span></div></div></div>
       <figcaption><b>Rise</b><span>Lines slide up into place, like a magazine cover.</span></figcaption></figure>
   </div>
 </section>
@@ -101,10 +111,10 @@ ul{margin:0;padding-left:1.1em;display:grid;gap:6px;max-width:66ch}
   <h2>The captions</h2>
   <p class="sub">Both use a new bold caption font. What changes is how the important words are treated.</p>
   <div class="row">
-    <figure><div class="phone"><div class="cap" id="capA"></div></div>
+    <figure><div class="phone"><video class="bg" src="img/sonia-talk.mp4" autoplay muted loop playsinline></video><div class="cap" id="capA"></div></div>
       <span class="tag">Ethan's idea</span>
       <figcaption><b>Keyword pop</b><span>The important words turn big, italic and gold, with a glow and a hand-drawn underline. Gold is the one new colour: it stands out against the teal wall.</span></figcaption></figure>
-    <figure><div class="phone"><div class="cap" id="capB"></div></div>
+    <figure><div class="phone"><video class="bg" src="img/sonia-talk.mp4" autoplay muted loop playsinline></video><div class="cap" id="capB"></div></div>
       <span class="tag">Sonia's idea</span>
       <figcaption><b>Every line different</b><span>Each group of words gets its own style (italic, underlined, spaced capitals, script, outline, banner) and every line stays white.</span></figcaption></figure>
   </div>
@@ -115,9 +125,9 @@ ul{margin:0;padding-left:1.1em;display:grid;gap:6px;max-width:66ch}
   <p class="sub">These replace the white text cards. A pop-up appears only while you talk about that topic, for 3–5 seconds, and then leaves. It shows your own treatment footage first. For topics you have no footage of, a realistic AI image made for that topic goes in the same frame.</p>
   <p class="note"><b>The moving clip is only an idea.</b> In the real videos, pop-ups will be photos from your treatments or AI images made for the topic, shown in one of these frames.</p>
   <div class="row">
-    <figure><div class="phone"><div class="pop"><div class="arch"><div class="img"><video src="img/treatment-clip.mp4" autoplay muted loop playsinline></video></div></div></div><div class="cap"><span>we treat pigmentation</span></div></div>
+    <figure><div class="phone"><video class="bg" src="img/sonia-talk.mp4" autoplay muted loop playsinline></video><div class="pop"><div class="arch"><div class="img"><video src="img/treatment-clip.mp4" autoplay muted loop playsinline></video></div></div></div><div class="cap"><span>we treat pigmentation</span></div></div>
       <figcaption><b>Arch frame, moving clip</b><span>A few seconds of the real treatment playing inside a soft arch.</span></figcaption></figure>
-    <figure><div class="phone"><div class="pop"><div class="mat"><div class="img"><img src="img/treatment.jpg" alt="Microneedling treatment at Skin Nourishers"></div><p>Microneedling</p></div></div><div class="cap"><span>with microneedling</span></div></div>
+    <figure><div class="phone"><video class="bg" src="img/sonia-talk.mp4" autoplay muted loop playsinline></video><div class="pop"><div class="mat"><div class="img"><img src="img/treatment.jpg" alt="Microneedling treatment at Skin Nourishers"></div><p>Microneedling</p></div></div><div class="cap"><span>with microneedling</span></div></div>
       <figcaption><b>Gallery frame, photo</b><span>A still from the treatment in a white border, with the treatment named underneath.</span></figcaption></figure>
   </div>
 </section>
@@ -148,9 +158,11 @@ function tick(){
 }
 tick();setInterval(tick,1600);
 const H=document.getElementById("introH");
-function intro(){
+const intros=[...document.querySelectorAll(".intro")];
+function cycle(){
   let d=0;
-  H.innerHTML='<span class="l1">'+"Does laser work on every".split(" ").map(w=>'<span class="w" style="animation-delay:'+(0.18*d++)+'s">'+w+'</span>').join(" ")+'</span><span class="hang" style="animation-delay:'+(0.18*d+0.1).toFixed(2)+'s">skin tone?</span>';
+  H.innerHTML='<span class="l1">'+"Does laser work on every".split(" ").map(w=>'<span class="w" style="animation-delay:'+(1.9+0.18*d++).toFixed(2)+'s">'+w+'</span>').join(" ")+'</span><span class="hang" style="animation-delay:'+(2+0.18*d).toFixed(2)+'s">skin tone?</span>';
+  intros.forEach(p=>{p.classList.remove("run");void p.offsetWidth;p.classList.add("run");const v=p.querySelector("video");v.currentTime=0;v.play().catch(()=>{});});
 }
-intro();setInterval(intro,5000);
+cycle();setInterval(cycle,7000);
 </script>
